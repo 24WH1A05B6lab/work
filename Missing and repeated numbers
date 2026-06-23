@@ -1,0 +1,33 @@
+public class MissingAndRepeated {
+
+    public static void findMissingAndRepeated(int[] arr) {
+        int n = arr.length;
+
+        long sumN = (long) n * (n + 1) / 2;
+        long sumSqN = (long) n * (n + 1) * (2 * n + 1) / 6;
+
+        long actualSum = 0;
+        long actualSumSq = 0;
+
+        for (int num : arr) {
+            actualSum += num;
+            actualSumSq += (long) num * num;
+        }
+
+        long diff = actualSum - sumN; 
+        long sqDiff = actualSumSq - sumSqN; 
+
+        long sum = sqDiff / diff; // 
+
+        long repeated = (diff + sum) / 2;
+        long missing = repeated - diff;
+
+        System.out.println("Repeated Number = " + repeated);
+        System.out.println("Missing Number = " + missing);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 2, 4, 5};
+        findMissingAndRepeated(arr);
+    }
+}
